@@ -156,15 +156,12 @@ function teamColors(nameOfTeam){
   const game = gameObject();
   for (let gameKey in game){
     let team = game[gameKey];
-    debugger
     for(let teamKey in team){
       if (teamKey === "teamName"){
-        debugger
         let name = team[teamKey]
         if (name === nameOfTeam){
           for(let teamKey1 in team){
             if (teamKey1 === "colors"){
-              debugger
               return team["colors"]
             }
           }
@@ -174,3 +171,42 @@ function teamColors(nameOfTeam){
   }
 }
 
+function teamNames(){
+  const teamNameArray = []
+  const game = gameObject();
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey === "teamName"){
+        teamNameArray.push(team[teamKey])
+      }
+    }
+  }
+  return teamNameArray
+}
+
+function playerNumbers(name){
+  const playerNumberArray = []
+  const game = gameObject();
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey === "teamName"){
+        nameTeam = team[teamKey]
+        if (nameTeam === name){
+          for(let teamKey in team){
+            if (teamKey=== "players"){
+              let teamPlayer = team[teamKey]
+              for(let playerKey in teamPlayer){
+                  const player = teamPlayer[playerKey]
+                  playerNumberArray.push(player["number"])
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return playerNumberArray
+}
+function playerStats(){}
