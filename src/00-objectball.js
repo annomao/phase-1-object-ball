@@ -152,3 +152,25 @@ function shoeSize(playerName){
   }
 }
 
+function teamColors(nameOfTeam){
+  const game = gameObject();
+  for (let gameKey in game){
+    let team = game[gameKey];
+    debugger
+    for(let teamKey in team){
+      if (teamKey === "teamName"){
+        debugger
+        let name = team[teamKey]
+        if (name === nameOfTeam){
+          for(let teamKey1 in team){
+            if (teamKey1 === "colors"){
+              debugger
+              return team["colors"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
