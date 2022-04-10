@@ -134,3 +134,21 @@ function numPointsScored(playerName){
   }
 }
 
+function shoeSize(playerName){
+  const game = gameObject();
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey=== "players"){
+        let Teamplayer = team[teamKey]
+        for(let playerKey in Teamplayer){
+          if (playerKey === playerName){
+            const player = Teamplayer[playerKey]
+            return player["shoe"]
+          }
+        } 
+      }
+    }
+  }
+}
+
