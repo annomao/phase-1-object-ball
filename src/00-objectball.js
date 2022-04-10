@@ -122,10 +122,10 @@ function numPointsScored(playerName){
     let team = game[gameKey];
     for(let teamKey in team){
       if (teamKey=== "players"){
-        let Teamplayer = team[teamKey]
-        for(let playerKey in Teamplayer){
+        let teamPlayer = team[teamKey]
+        for(let playerKey in teamPlayer){
           if (playerKey === playerName){
-            const player = Teamplayer[playerKey]
+            const player = teamPlayer[playerKey]
             return player["points"]
           }
         } 
@@ -140,10 +140,10 @@ function shoeSize(playerName){
     let team = game[gameKey];
     for(let teamKey in team){
       if (teamKey=== "players"){
-        let Teamplayer = team[teamKey]
-        for(let playerKey in Teamplayer){
+        let teamPlayer = team[teamKey]
+        for(let playerKey in teamPlayer){
           if (playerKey === playerName){
-            const player = Teamplayer[playerKey]
+            const player = teamPlayer[playerKey]
             return player["shoe"]
           }
         } 
@@ -192,7 +192,7 @@ function playerNumbers(name){
     let team = game[gameKey];
     for(let teamKey in team){
       if (teamKey === "teamName"){
-        nameTeam = team[teamKey]
+        let nameTeam = team[teamKey]
         if (nameTeam === name){
           for(let teamKey in team){
             if (teamKey=== "players"){
@@ -209,4 +209,20 @@ function playerNumbers(name){
   }
   return playerNumberArray
 }
-function playerStats(){}
+function playerStats(playerName){
+  const game = gameObject();
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey=== "players"){
+        let teamPlayer = team[teamKey]
+        for(let playerKey in teamPlayer){
+          if (playerKey === playerName){
+            return teamPlayer[playerKey]
+          }
+        }
+      }
+    }
+  }
+}
+        
