@@ -135,18 +135,18 @@ function getPlayerObject(playerName){
 
 function numPointsScored(playerName){
   const player = getPlayerObject(playerName)
-  return player.points
+  return `${playerName} has ${player.points} points`
 }
 
 function shoeSize(playerName){
   const player = getPlayerObject(playerName)
-  return player.shoe
+  return `${playerName} has a shoe size of ${player.shoe}`
 }
 
 function playerStats(playerName){
   return getPlayerObject(playerName)
 }
-
+///////////
 function teamNames(){
 
   const teamNameArray = []
@@ -163,7 +163,7 @@ function teamNames(){
 
   return teamNameArray
 }   
-
+////////////
 function getTeamObject(nameOfTeam){
   const game = gameObject();
 
@@ -196,7 +196,7 @@ function playerNumbers(nameOfTeam){
 
   const playerNumberArray = []
   const team = getTeamObject(nameOfTeam)
-  
+
   for(let teamKey in team){
     if (teamKey=== "players"){
       let teamPlayer = team[teamKey]
@@ -206,6 +206,30 @@ function playerNumbers(nameOfTeam){
       }
     }
   }
-  return playerNumberArray  
+  return `Team ${nameOfTeam} has the following numbers ${playerNumberArray}`  
   }
-    
+
+function bigShoeRebounds(){
+
+  const players = ["Alan Anderson","Reggie Evans","Brook Lopez","Mason Plumlee","Jason Terry",
+  "Jeff Adrien","Bismak Biyombo","DeSagna Diop","Ben Gordon","Brendan Haywood"]
+  const shoeSizes = []
+  const rebounds = []
+
+  for(const player of players){
+    let size = shoeSize(player)
+    shoeSizes.push(size)
+    let rebound = playerRebounds(player)
+    rebounds.push(rebound)
+  }
+  const largestShoeSize = Math.max(...shoeSizes)
+  const index = shoeSizes.indexOf(largestShoeSize)
+
+  return `Player: ${players[index]} with the largest shoe size:${largestShoeSize},has ${rebounds[index]} rebounds`
+}
+
+//get player rebound given player name
+function playerRebounds(playerName){
+  const player = getPlayerObject(playerName)
+  return player.rebounds
+}
