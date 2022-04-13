@@ -140,7 +140,7 @@ function numPointsScored(playerName){
 
 function shoeSize(playerName){
   const player = getPlayerObject(playerName)
-  return `${playerName} has a shoe size of ${player.shoe}`
+  return player.shoe
 }
 
 function playerStats(playerName){
@@ -224,6 +224,7 @@ function bigShoeRebounds(){
   }
   const largestShoeSize = Math.max(...shoeSizes)
   const index = shoeSizes.indexOf(largestShoeSize)
+  console.log(index,shoeSizes,rebounds)
 
   return `Player: ${players[index]} with the largest shoe size:${largestShoeSize},has ${rebounds[index]} rebounds`
 }
