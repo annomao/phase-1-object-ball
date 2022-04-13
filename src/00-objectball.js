@@ -116,100 +116,7 @@ function gameObject(){
   return game
 }
 
-function numPointsScored(playerName){
-  const game = gameObject();
-  for (let gameKey in game){
-    let team = game[gameKey];
-    for(let teamKey in team){
-      if (teamKey=== "players"){
-        let teamPlayer = team[teamKey]
-        for(let playerKey in teamPlayer){
-          if (playerKey === playerName){
-            const player = teamPlayer[playerKey]
-            return player["points"]
-          }
-        } 
-      }
-    }
-  }
-}
-
-function shoeSize(playerName){
-  const game = gameObject();
-  for (let gameKey in game){
-    let team = game[gameKey];
-    for(let teamKey in team){
-      if (teamKey=== "players"){
-        let teamPlayer = team[teamKey]
-        for(let playerKey in teamPlayer){
-          if (playerKey === playerName){
-            const player = teamPlayer[playerKey]
-            return player["shoe"]
-          }
-        } 
-      }
-    }
-  }
-}
-
-function teamColors(nameOfTeam){
-  const game = gameObject();
-  for (let gameKey in game){
-    let team = game[gameKey];
-    for(let teamKey in team){
-      if (teamKey === "teamName"){
-        let name = team[teamKey]
-        if (name === nameOfTeam){
-          for(let teamKey1 in team){
-            if (teamKey1 === "colors"){
-              return team["colors"]
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-function teamNames(){
-  const teamNameArray = []
-  const game = gameObject();
-  for (let gameKey in game){
-    let team = game[gameKey];
-    for(let teamKey in team){
-      if (teamKey === "teamName"){
-        teamNameArray.push(team[teamKey])
-      }
-    }
-  }
-  return teamNameArray
-}
-
-function playerNumbers(name){
-  const playerNumberArray = []
-  const game = gameObject();
-  for (let gameKey in game){
-    let team = game[gameKey];
-    for(let teamKey in team){
-      if (teamKey === "teamName"){
-        let nameTeam = team[teamKey]
-        if (nameTeam === name){
-          for(let teamKey in team){
-            if (teamKey=== "players"){
-              let teamPlayer = team[teamKey]
-              for(let playerKey in teamPlayer){
-                  const player = teamPlayer[playerKey]
-                  playerNumberArray.push(player["number"])
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  return playerNumberArray
-}
-function playerStats(playerName){
+function getPlayerObject(playerName){
   const game = gameObject();
   for (let gameKey in game){
     let team = game[gameKey];
@@ -221,8 +128,84 @@ function playerStats(playerName){
             return teamPlayer[playerKey]
           }
         }
+      }  
+    } 
+  }
+}
+
+function numPointsScored(playerName){
+  const player = getPlayerObject(playerName)
+  return player.points
+}
+
+function shoeSize(playerName){
+  const player = getPlayerObject(playerName)
+  return player.shoe
+}
+
+function playerStats(playerName){
+  return getPlayerObject(playerName)
+}
+
+function teamNames(){
+
+  const teamNameArray = []
+  const game = gameObject();
+
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey === "teamName"){
+        teamNameArray.push(team[teamKey])
+      }
+    }
+  }
+
+  return teamNameArray
+}   
+
+function getTeamObject(nameOfTeam){
+  const game = gameObject();
+
+  for (let gameKey in game){
+    let team = game[gameKey];
+    for(let teamKey in team){
+      if (teamKey === "teamName"){
+        let name = team[teamKey]
+        if (name === nameOfTeam){
+          return team
+        }
       }
     }
   }
 }
-        
+
+function teamColors(nameOfTeam){
+  const team = getTeamObject(nameOfTeam)
+
+  for(let teamKey1 in team){
+    if (teamKey1 === "colors"){
+      return team["colors"]
+    }
+  }
+}
+
+
+
+function playerNumbers(nameOfTeam){
+
+  const playerNumberArray = []
+  const team = getTeamObject(nameOfTeam)
+  
+  for(let teamKey in team){
+    if (teamKey=== "players"){
+      let teamPlayer = team[teamKey]
+      for(let playerKey in teamPlayer){
+        const player = teamPlayer[playerKey]
+        playerNumberArray.push(player["number"])
+      }
+    }
+  }
+  return playerNumberArray  
+  }
+    
